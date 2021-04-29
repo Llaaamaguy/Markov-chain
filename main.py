@@ -9,15 +9,25 @@ def generate_dict(userinput):
     words = userinput.split()
     worddict = {}
     for i, j in pairwise(words):
-        if worddict[i] == None:
-            worddict[i] = {}
-    print(worddict)
+      if i in worddict:
+        if j in worddict[i]:
+          worddict[i][j] += 1
+        else:
+          worddict[i][j] = 1
+      else:
+        worddict[i] = {j: 1}
+    return worddict
     
-    
+def generate_text(worddict):
+  """
+  generate text
+  """
 
 def main():
     usrinput = input("What is your string?: ")
-    generate_dict(usrinput)
+    worddict = generate_dict(usrinput)
+    print(worddict)
+
 
 if __name__ == "__main__":
     main()

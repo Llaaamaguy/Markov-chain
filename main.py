@@ -25,7 +25,7 @@ def generate_text(worddict):
   """
 
 def generate_bad_text(worddict):
-  length = 10
+  length = 50
   string = []
   for i in range(length):
     if i == 0:
@@ -47,6 +47,7 @@ def main():
         print('\n')
         string = input("What is your training input: ")
         worddict = generate_dict(string)
+        print(worddict)
         generated = generate_bad_text(worddict)
         print(generated)
       elif usrwords[1] == "file":
@@ -55,10 +56,9 @@ def main():
         try:
           with open(fname, "r") as f:
             text = f.read()
-            f.close()
           worddict = generate_dict(text)
           generated = generate_bad_text(worddict)
-          print(generated)
+          print(" ".join(generated))
         except FileNotFoundError:
           print("File did not exist")
     elif usrwords[0] == "exit":

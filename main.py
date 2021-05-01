@@ -21,7 +21,7 @@ def generate_dict(userinput):
     
 def generate_text(worddict):
   """
-  generate text using mArKoV cHaIn
+  generate text using tHe RiGhT wAy oF DoInG iT
   """
 
 def generate_bad_text(worddict, length):
@@ -53,7 +53,7 @@ def main():
         length = int(input("Length of output: "))
         worddict = generate_dict(string)
         generated = generate_bad_text(worddict, length)
-        print(generated)
+        print(" ".join(generated))
       elif usrwords[1] == "file":
         print('\n')
         fname = input("File name: ")

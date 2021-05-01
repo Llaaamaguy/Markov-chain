@@ -24,15 +24,19 @@ def generate_text(worddict):
   generate text using mArKoV cHaIn
   """
 
-def generate_bad_text(worddict):
-  length = 50
+def generate_bad_text(worddict, length):
   string = []
   for i in range(length):
     if i == 0:
       string.append(random.choice(list(worddict.keys())))
     else:
       lastword = string[i-1]
-      string.append(random.choice(list(worddict[lastword].keys())))
+      choosable = worddict[lastword]
+      choosablewords = []
+      for k, v in choosable.items():
+        for i in range(v):
+          choosablewords.append(k)
+      string.append(random.choice(choosablewords))
   return string
 
 def main(): 
@@ -46,18 +50,19 @@ def main():
       if usrwords[1] == "type":
         print('\n')
         string = input("What is your training input: ")
+        length = int(input("Length of output: "))
         worddict = generate_dict(string)
-        print(worddict)
-        generated = generate_bad_text(worddict)
+        generated = generate_bad_text(worddict, length)
         print(generated)
       elif usrwords[1] == "file":
         print('\n')
         fname = input("File name: ")
+        length = int(input("Length: "))
         try:
           with open(fname, "r") as f:
             text = f.read()
           worddict = generate_dict(text)
-          generated = generate_bad_text(worddict)
+          generated = generate_bad_text(worddict, length)
           print(" ".join(generated))
         except FileNotFoundError:
           print("File did not exist")

@@ -19,7 +19,7 @@ def generate_dict(userinput):
       else:
         worddict[i] = {j: 1}
     return worddict
-    
+
 def generate_text(worddict):
   """
   generate text using tHe RiGhT wAy oF DoInG iT

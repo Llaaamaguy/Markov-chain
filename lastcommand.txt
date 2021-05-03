@@ -2,3 +2,4 @@ pogger
 start file chickenlittle.txt 10
 start file beemovie.txt 10
 start file shrek.txt 10
+start file chickenlittle.txt 500

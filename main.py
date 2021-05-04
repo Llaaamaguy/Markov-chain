@@ -20,7 +20,7 @@ def generate_dict(userinput):
         worddict[i] = {j: 1}
     return worddict
 
-def generate_text(worddict):
+def generate_text(worddict, length):
   """
   generate text using tHe RiGhT wAy oF DoInG iT
   """
@@ -32,12 +32,14 @@ def generate_bad_text(worddict, length):
       string.append(random.choice(list(worddict.keys())))
     else:
       lastword = string[i-1]
-      choosable = worddict[lastword]
-      choosablewords = []
-      for k, v in choosable.items():
-        for i in range(v):
-          choosablewords.append(k)
-      string.append(random.choice(choosablewords))
+      if lastword not in worddict:
+        string.append(random.choice(list(worddict.keys())))
+      else:
+        choosablewords = []
+        for k, v in worddict[lastword].items():
+          for i in range(v):
+            choosablewords.append(k)
+        string.append(random.choice(choosablewords))
   return string
 
 def gencustom():
@@ -62,7 +64,7 @@ def genfile(mode, fname=None, length=None):
   except FileNotFoundError:
     return("File did not exist")
 
-def main(): 
+def main():
   while True:
     usrinput = input("markov_chain_project: ")
     usrwords = usrinput.split()
@@ -75,14 +77,12 @@ def main():
         with open("lastcommand.txt", "a") as f:
           f.write("type\n")
         print('\n')
-        output = gencustom()
-        print(output)
+        print(gencustom())
       elif usrwords[1] == "file":
         with open("lastcommand.txt", "a") as f:
           f.write("file ")
         print('\n')
-        output = genfile("nondefined")
-        print(output)
+        print(genfile("nondefined"))
     elif usrwords[0] == "redo":
       with open('lastcommand.txt', 'rb') as f:
         f.seek(-2, os.SEEK_END)
@@ -93,14 +93,12 @@ def main():
       print('\n')
       if command[0] == "start":
         if command[1] == "type":
-          output = gencustom()
-          print(output)
+          print(gencustom())
         elif command[1] == "file":
           fname = command[2]
           length = command[3]
           length = int(length)
-          output = genfile("predefined", fname, length)
-          print(output)
+          print(genfile("predefined", fname, length))
     elif usrwords[0] == "exit":
       break
 

@@ -101,6 +101,8 @@ def main():
           print(genfile("predefined", fname, length))
     elif usrwords[0] == "exit":
       break
+    else:
+      print("Unknown command: " + usrwords[0])
 
 
 if __name__ == "__main__":

@@ -6,3 +6,8 @@ start file chickenlittle.txt 500
 start file chickenlittle.txt 10start type
 start type
 start type
+start file what.txt 100
+start file shrek.txt 100
+start file shrek.txt 100
+start file beemovie.txt 10
+start file beemovie.txt 10
